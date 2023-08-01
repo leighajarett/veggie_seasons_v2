@@ -32,14 +32,14 @@ class Button extends StatelessWidget {
     final padding = EdgeInsets.symmetric(
         horizontal: $styles.padding.m, vertical: $styles.padding.s);
 
-    final border = BorderSide(color: $styles.colors.black, width: 2);
+    final border = BorderSide(
+        color: $styles.colors.black, width: $styles.borderStyle.width);
 
     return TextButton(
         onPressed: onPressed,
         child: textWidget,
         style: ButtonStyle(
           // Would be helpful to have guidance on when to use ButtonStyle versus TextButton.styleFrom
-          // Couldn't figure out how to get the hover color to work (may be the simulator)
           backgroundColor: overlayColor,
           surfaceTintColor:
               MaterialStateProperty.all<Color>(Colors.transparent),
