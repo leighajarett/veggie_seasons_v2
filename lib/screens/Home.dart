@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/data/veggie_data.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/ui/VeggieCard.dart';
+import 'package:veggie_seasons_v2/components/cards/VeggieCard.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,108 +12,128 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late ScrollController _scrollController;
-  bool _isScrolled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (_scrollController.offset > 0 && !_isScrolled) {
-      setState(() {
-        _isScrolled = true;
-      });
-    } else if (_scrollController.offset <= 0 && _isScrolled) {
-      setState(() {
-        _isScrolled = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    var subheading = Text(
-      "Subheading",
-      style: $styles.text.subheading2.copyWith(color: $styles.colors.grey),
-    );
+    // Get todays date as a string with month and year
+    List<String> months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
 
-    var heading = Padding(
-      padding: EdgeInsets.only(top: 20),
-      child: Text(
-        "Heading",
-        style: $styles.text.heading1.copyWith(color: $styles.colors.black),
-      ),
-    );
+    final now = DateTime.now();
+    final month = now.month;
 
-    // Return a listview of all the veggies
-    return CustomScrollView(controller: _scrollController, slivers: [
-      SliverPersistentHeader(
-        delegate: CustomAppBarDelegate(
-          heading: Text(
-            'Heading',
-            style: TextStyle(
-              fontSize: _isScrolled ? 20.0 : 30.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          subheading: Opacity(
-            opacity: _isScrolled ? 0.0 : 1.0,
-            child: Text('Subheading'),
-          ),
+    String getMonthYear() {
+      final year = now.year;
+      final monthName = months[month - 1];
+      return '$monthName $year';
+    }
+
+    Season getSeason() {
+      switch (month) {
+        case 12 || 1 || 2:
+          {
+            return Season.winter;
+          }
+        case 3 || 4 || 5:
+          {
+            return Season.spring;
+          }
+        case 6 || 7 || 8:
+          {
+            return Season.summer;
+          }
+        default:
+          {
+            return Season.autumn;
+          }
+      }
+    }
+
+    return Scaffold(
+      body: CustomScrollView(slivers: [
+        SliverPersistentHeader(
+          delegate: CustomSliverHeaderDelegate(monthYear: getMonthYear()),
+          pinned: true,
+          floating: false,
         ),
-        pinned: true,
-      ),
-      SliverList.list(
-        children: [
-          for (Veggie veggie in veggies)
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: $styles.padding.m, horizontal: $styles.padding.l),
-              child: VeggieCard(veggie: veggie),
-            )
-        ],
-      ),
-    ]);
+        SliverList.list(
+          children: [
+            for (Veggie veggie
+                in veggies.where((v) => v.seasons.contains(getSeason())))
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: $styles.padding.m, horizontal: $styles.padding.l),
+                child: VeggieCard(veggie: veggie),
+              )
+          ],
+        ),
+      ]),
+    );
   }
 }
 
-class CustomAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final Widget heading;
-  final Widget subheading;
+// Future -- it would be cool to have some "overscrolling"
+class CustomSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
+  CustomSliverHeaderDelegate({required this.monthYear});
 
-  CustomAppBarDelegate({
-    required this.heading,
-    required this.subheading,
-  });
+  final String monthYear;
 
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: $styles.colors.background,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: $styles.padding.l),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: $styles.padding.xl + kToolbarHeight),
-            subheading,
-            heading,
-          ],
+    final progress = shrinkOffset / (maxExtent - minExtent);
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(
+          color: $styles.colors.background,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: $styles.padding.l),
+            child: Padding(
+              padding: EdgeInsets.only(bottom: $styles.padding.s),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    progress < 1
+                        ? AnimatedOpacity(
+                            duration: const Duration(milliseconds: 200),
+                            opacity: progress < 0.7 ? 1.0 : 0.0,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.only(bottom: $styles.padding.xs),
+                              child: Text(
+                                monthYear,
+                                style: $styles.text.subheading1
+                                    .copyWith(color: $styles.colors.black),
+                              ),
+                            ))
+                        : const SizedBox.shrink(),
+                    AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 200),
+                        style: progress < 1
+                            ? $styles.text.heading1
+                                .copyWith(color: $styles.colors.black)
+                            : $styles.text.heading2
+                                .copyWith(color: $styles.colors.black),
+                        child: const Text("In season today")),
+                  ]),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -123,11 +141,10 @@ class CustomAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 150;
 
   @override
-  double get minExtent => 100.0;
+  double get minExtent => kToolbarHeight + 44;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
+  }
 }
-
-AppStyle get $styles => AppStyle();

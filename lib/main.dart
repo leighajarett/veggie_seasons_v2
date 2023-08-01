@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
+import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
 import 'package:veggie_seasons_v2/data/veggie_data.dart';
+import 'package:veggie_seasons_v2/screens/Garden.dart';
 import 'package:veggie_seasons_v2/screens/Home.dart';
+import 'package:veggie_seasons_v2/screens/SearchPage.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/ui/Button.dart';
-import 'package:veggie_seasons_v2/ui/CustomNavigationBar.dart';
-import 'package:veggie_seasons_v2/ui/VeggieCard.dart';
+import 'package:veggie_seasons_v2/components/Button.dart';
+import 'package:veggie_seasons_v2/components/CustomNavigationBar.dart';
+import 'package:veggie_seasons_v2/components/cards/VeggieCard.dart';
 
 void main() async {
   runApp(VeggieSeasonsApp());
@@ -39,6 +43,7 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> with TickerProviderStateMixin {
   late TabController _tabController;
   int tabIndex = 0;
+  bool value = true;
 
   @override
   void initState() {
@@ -74,24 +79,9 @@ class _PageState extends State<Page> with TickerProviderStateMixin {
         index: tabIndex,
         children: [
           Home(),
-          Center(
-            child: Button(
-              textString: "hi garden",
-              onPressed: () {},
-            ),
-          ),
-          Center(
-            child: Button(
-              textString: "hi search",
-              onPressed: () {},
-            ),
-          ),
-          Center(
-            child: Button(
-              textString: "hi profile",
-              onPressed: () {},
-            ),
-          ),
+          Garden(),
+          SearchPage(),
+          Center(child: Text("placeholder")),
         ],
       ),
     );

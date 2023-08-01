@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
+import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class Button extends StatelessWidget {
   String textString;
@@ -25,7 +26,7 @@ class Button extends StatelessWidget {
     );
 
     final shape = RoundedRectangleBorder(
-      borderRadius: $styles.borderRadius,
+      borderRadius: $styles.borderStyle.roundedBorderRadius,
     );
 
     final padding = EdgeInsets.symmetric(
@@ -52,17 +53,13 @@ class Button extends StatelessWidget {
   }
 }
 
-AppStyle get $styles => AppStyle();
-
-// style: ButtonStyle(
-//   // Want to directly use the color but cant
-//   // backgroundColor: backgroundColor,
-//   backgroundColor: MaterialStateProperty.all<Color>($styles.colors.white),
-//   surfaceTintColor: MaterialStateProperty.all<Color>(Colors.transparent),
-//   shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
-//   overlayColor: MaterialStateProperty.all<Color>($styles.colors.spring),
-//   shape: MaterialStateProperty.all<OutlinedBorder>(shape),
-//   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(padding),
-//   side: MaterialStateProperty.all<BorderSide>(border),
-//   splashFactory: NoSplash.splashFactory,
-// ),
+@widgetbook.UseCase(
+  name: 'Trivia Button',
+  type: Button,
+)
+Widget buttonUseCase(BuildContext context) {
+  return Button(
+    textString: "Trivia",
+    onPressed: () {},
+  );
+}

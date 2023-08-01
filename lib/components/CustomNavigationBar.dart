@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
+import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:veggie_seasons_v2/ui/Button.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({
@@ -51,7 +50,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       color: $styles.colors.white,
       child: SafeArea(
         child: Container(
-          height: 46,
+          height: containerW,
           width: double.infinity,
           decoration: BoxDecoration(
             color: $styles.colors.white,
@@ -59,7 +58,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 0,
                 ),
                 child: AnimatedSlide(
@@ -79,12 +78,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                   child: Container(
                     height: containerW,
                     width: containerW,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: $styles.colors.black,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(100),
+                    decoration: $styles.containerStyles.circular.copyWith(
                       color: $styles.colors.winter,
                     ),
                   ),
@@ -116,7 +110,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
               Row(
                 children: icons.asMap().entries.map((entry) {
                   int index = entry.key;
-                  IconData icon = entry.value;
                   return Expanded(
                     child: GestureDetector(
                       behavior: HitTestBehavior.opaque,
@@ -137,3 +130,17 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     );
   }
 }
+
+// Unsure how to do this -- need to think a little
+// @widgetbook.UseCase(
+//   name: 'Bottom Navigation Bar',
+//   type: CustomNavigationBar,
+// )
+// Widget buttonUseCase(BuildContext context) {
+//   return CustomNavigationBar(
+//       tabController: TabController(
+//     length: 4,
+//     vsync: this,
+//     initialIndex: 0,
+//   ));
+// }

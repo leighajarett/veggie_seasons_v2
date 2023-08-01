@@ -128,3 +128,9 @@ class Veggie {
 
   String? get categoryName => veggieCategoryNames[category];
 }
+
+// Size enum that can be big or small
+enum Size {
+  large,
+  small,
+}
