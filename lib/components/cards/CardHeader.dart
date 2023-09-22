@@ -13,7 +13,15 @@ class CardHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(veggie.name, style: $styles.text.heading2),
+        Flexible(
+          flex: 5,
+          child: Text(
+            veggie.name,
+            style: $styles.text.heading2,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
         VeggieCardSeasons(
           veggie: veggie,
           size: size,

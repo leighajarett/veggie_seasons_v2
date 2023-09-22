@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:veggie_seasons_v2/styles/colors.dart';
@@ -30,10 +29,10 @@ class _Text {
 
   _Text() {
     heading1 =
-        font.copyWith(fontSize: 32, fontWeight: FontWeight.w700, height: 1.0);
+        font.copyWith(fontSize: 32, fontWeight: FontWeight.w700, height: 1);
 
     heading2 =
-        font.copyWith(fontSize: 24, fontWeight: FontWeight.w600, height: 1.0);
+        font.copyWith(fontSize: 24, fontWeight: FontWeight.w600, height: 1.3);
 
     heading3 =
         font.copyWith(fontSize: 16, fontWeight: FontWeight.w600, height: 1.0);

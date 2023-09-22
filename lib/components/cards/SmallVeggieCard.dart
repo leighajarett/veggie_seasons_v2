@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:veggie_seasons_v2/components/cards/CardHeader.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
@@ -35,6 +36,7 @@ class SmallVeggieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CardHeader(veggie: veggie, size: size),
+                    const Gap(4),
                     SizedBox(
                       height: $styles.padding.xs,
                     ),
