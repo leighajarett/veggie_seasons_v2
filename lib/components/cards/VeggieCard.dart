@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:veggie_seasons_v2/components/cards/CardHeader.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/screens/VeggieDetail.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/SeasonCircle.dart';
 
 class VeggieCard extends StatelessWidget {
   VeggieCard({super.key, required this.veggie});

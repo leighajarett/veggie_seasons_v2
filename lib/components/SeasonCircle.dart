@@ -1,7 +1,6 @@
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class SeasonCircle extends StatelessWidget {
   SeasonCircle({super.key, required this.size, required this.season});

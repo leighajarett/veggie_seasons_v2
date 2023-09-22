@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 

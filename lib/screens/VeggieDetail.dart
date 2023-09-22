@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
 import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
-import 'package:veggie_seasons_v2/components/SeasonCircle.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
@@ -51,15 +49,15 @@ class _VeggieDetailState extends State<VeggieDetail> {
 
   @override
   Widget build(BuildContext context) {
-    var serving_words = widget.veggie.servingSize.split(" ");
+    var servingWords = widget.veggie.servingSize.split(" ");
 
-    var serving_info =
+    var servingInfo =
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: serving_words[0],
-            label: serving_words.sublist(1).join(" ").capitalize()),
+            number: servingWords[0],
+            label: servingWords.sublist(1).join(" ").capitalize()),
       ),
       Expanded(
         flex: 1,
@@ -69,13 +67,13 @@ class _VeggieDetailState extends State<VeggieDetail> {
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: (widget.veggie.vitaminAPercentage).toString() + "%",
+            number: "${widget.veggie.vitaminAPercentage}%",
             label: "Vitamin A"),
       ),
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: widget.veggie.vitaminCPercentage.toString() + "%",
+            number: "${widget.veggie.vitaminCPercentage}%",
             label: "Vitamin C"),
       ),
     ]);
@@ -130,7 +128,7 @@ class _VeggieDetailState extends State<VeggieDetail> {
               padding: EdgeInsets.all($styles.padding.m),
               child: Column(
                 children: [
-                  serving_info,
+                  servingInfo,
                   SizedBox(height: $styles.padding.m),
                   FutureBuilder(
                       future: _getCalorie(),
@@ -163,7 +161,7 @@ class _VeggieDetailState extends State<VeggieDetail> {
                             });
                           });
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                   }),
               SizedBox(width: $styles.padding.xs),
@@ -207,6 +205,6 @@ class ServingInfo extends StatelessWidget {
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }

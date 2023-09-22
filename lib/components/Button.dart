@@ -37,7 +37,6 @@ class Button extends StatelessWidget {
 
     return TextButton(
         onPressed: onPressed,
-        child: textWidget,
         style: ButtonStyle(
           // Would be helpful to have guidance on when to use ButtonStyle versus TextButton.styleFrom
           backgroundColor: overlayColor,
@@ -49,7 +48,8 @@ class Button extends StatelessWidget {
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(padding),
           side: MaterialStateProperty.all<BorderSide>(border),
           splashFactory: NoSplash.splashFactory,
-        ));
+        ),
+        child: textWidget);
   }
 }
 

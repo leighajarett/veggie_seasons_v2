@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:veggie_seasons_v2/components/cards/SmallVeggieCard.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/data/veggie_data.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Garden extends StatefulWidget {
