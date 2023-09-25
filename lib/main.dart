@@ -23,6 +23,7 @@ class VeggieSeasonsApp extends StatelessWidget {
         fontFamily: $styles.text.fontFamily,
         colorScheme: $styles.colors.toColorScheme(),
       ),
+      debugShowCheckedModeBanner: false,
       home: const DefaultTabController(length: 4, child: Page()),
     );
   }
