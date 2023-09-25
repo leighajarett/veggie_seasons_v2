@@ -4,9 +4,9 @@ import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class CardHeader extends StatelessWidget {
-  CardHeader({super.key, required this.veggie, required this.size});
-  Veggie veggie;
-  Size size;
+  const CardHeader({super.key, required this.veggie, required this.size});
+  final Veggie veggie;
+  final Size size;
 
   @override
   Widget build(BuildContext context) {
