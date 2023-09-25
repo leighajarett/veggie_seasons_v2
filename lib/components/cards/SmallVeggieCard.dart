@@ -8,7 +8,7 @@ import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class SmallVeggieCard extends StatelessWidget {
   SmallVeggieCard({super.key, required this.veggie});
-  Veggie veggie;
+  final Veggie veggie;
   final size = Size.small;
 
   @override
@@ -36,10 +36,7 @@ class SmallVeggieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CardHeader(veggie: veggie, size: size),
-                    const Gap(4),
-                    SizedBox(
-                      height: $styles.padding.xs,
-                    ),
+                    Gap($styles.padding.s),
                     Text(
                       veggie.shortDescription,
                       style: $styles.text.subheading2,
