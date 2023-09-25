@@ -140,7 +140,6 @@ class _VeggieDetailState extends State<VeggieDetail> {
                   )
                 : Column(
                     children: [
-                      SizedBox(height: $styles.padding.m),
                       Text("SERVING INFO",
                           style: $styles.text.heading3
                               .copyWith(color: $styles.colors.black)),
