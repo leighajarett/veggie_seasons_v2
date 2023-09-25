@@ -7,9 +7,9 @@ import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class TriviaComponent extends StatefulWidget {
-  TriviaComponent({required this.trivias, super.key});
+  const TriviaComponent({required this.trivias, super.key});
 
-  List<Trivia> trivias;
+  final List<Trivia> trivias;
 
   @override
   State<TriviaComponent> createState() => _TriviaComponentState();

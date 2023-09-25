@@ -3,9 +3,9 @@ import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class VeggieImage extends StatelessWidget {
-  VeggieImage({super.key, required this.veggie, required this.size});
-  Veggie veggie;
-  Size size;
+  const VeggieImage({super.key, required this.veggie, required this.size});
+  final Veggie veggie;
+  final Size size;
 
   @override
   Widget build(BuildContext context) {

@@ -3,12 +3,13 @@ import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
-  TextEditingController editingController;
-  Function filterSearchResults;
-  Search(
+  const Search(
       {super.key,
       required this.editingController,
       required this.filterSearchResults});
+
+  final TextEditingController editingController;
+  final Function filterSearchResults;
 
   @override
   Widget build(BuildContext context) {

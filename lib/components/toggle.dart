@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class Toggle extends StatefulWidget {
-  Toggle({required this.onPressed, super.key});
+  const Toggle({required this.onPressed, super.key});
 
-  Function onPressed;
+  final Function onPressed;
 
   @override
   State<Toggle> createState() => _ToggleState();

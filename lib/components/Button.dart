@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class Button extends StatelessWidget {
-  String textString;
-  void Function()? onPressed;
-  Button({super.key, required this.textString, required this.onPressed});
+  const Button({super.key, required this.textString, required this.onPressed});
+
+  final String textString;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
