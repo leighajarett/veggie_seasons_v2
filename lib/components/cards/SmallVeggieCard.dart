@@ -7,7 +7,7 @@ import 'package:veggie_seasons_v2/screens/VeggieDetail.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
 class SmallVeggieCard extends StatelessWidget {
-  SmallVeggieCard({super.key, required this.veggie});
+  const SmallVeggieCard({super.key, required this.veggie});
   final Veggie veggie;
   final size = Size.small;
 

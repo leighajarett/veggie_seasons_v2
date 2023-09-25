@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:veggie_seasons_v2/components/Button.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
