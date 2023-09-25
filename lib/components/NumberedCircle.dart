@@ -3,29 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class NumberedCircle extends StatelessWidget {
-  NumberedCircle({Key? key, required this.number}) : super(key: key);
-  String number;
-  double containerW = 60;
+  const NumberedCircle({Key? key, required this.number}) : super(key: key);
+  final String number;
+  final double containerW = 60;
 
   @override
   Widget build(BuildContext context) {
-    if (number == "One") {
-      number = "1";
-    }
+    return Circle(
+      color: $styles.colors.summer,
+      size: containerW,
+      text: number,
+    );
+  }
+}
 
+class Circle extends StatelessWidget {
+  const Circle({required this.size, required this.color, this.text, super.key});
+
+  final double size;
+  final Color color;
+  final String? text;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      decoration: $styles.containerStyles.circular.copyWith(
-        color: $styles.colors.summer,
-      ),
-      width: containerW,
-      height: containerW,
-      child: Center(
-        child: Text(
-          number,
-          style:
-              number.length > 2 ? $styles.text.heading3 : $styles.text.heading2,
-        ),
-      ),
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: $styles.colors.black,
+            width: 2,
+          )),
+      child: text != null
+          ? Center(
+              child: Text(text!,
+                  style: text!.length > 2
+                      ? $styles.text.heading3
+                      : $styles.text.heading2),
+            )
+          : null,
     );
   }
 }
@@ -35,7 +53,7 @@ class NumberedCircle extends StatelessWidget {
   type: NumberedCircle,
 )
 Widget numberedCircleUseCase(BuildContext context) {
-  return NumberedCircle(
+  return const NumberedCircle(
     number: "1",
   );
 }
