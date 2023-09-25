@@ -94,4 +94,3 @@ class _BorderStyle {
 AppStyle get $styles => AppStyle();
 
 /// Later: accessibility, dynamic sizes, localization.
-
