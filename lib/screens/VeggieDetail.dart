@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
@@ -56,11 +55,6 @@ class _VeggieDetailState extends State<VeggieDetail> {
     setState(() {
       trivia = (selectedVals.first == 'Trivia');
     });
-  }
-
-  Trivia getRandomTrivia() {
-    final rand = Random();
-    return widget.veggie.trivia[rand.nextInt(widget.veggie.trivia.length)];
   }
 
   @override
@@ -136,7 +130,7 @@ class _VeggieDetailState extends State<VeggieDetail> {
             SizedBox(height: $styles.padding.s),
             trivia
                 ? TriviaComponent(
-                    trivia: getRandomTrivia(),
+                    trivias: widget.veggie.trivia,
                   )
                 : Column(
                     children: [
