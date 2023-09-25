@@ -67,14 +67,12 @@ class _VeggieDetailState extends State<VeggieDetail> {
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: "${widget.veggie.vitaminAPercentage}%",
-            label: "Vitamin A"),
+            number: "${widget.veggie.vitaminAPercentage}%", label: "Vitamin A"),
       ),
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: "${widget.veggie.vitaminCPercentage}%",
-            label: "Vitamin C"),
+            number: "${widget.veggie.vitaminCPercentage}%", label: "Vitamin C"),
       ),
     ]);
 
