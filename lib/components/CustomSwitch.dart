@@ -7,7 +7,7 @@ class CustomSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
 
-  CustomSwitch({
+  const CustomSwitch({
     Key? key,
     required this.value,
     required this.onChanged,

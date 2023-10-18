@@ -16,7 +16,7 @@ List<Veggie> veggies = [
     seasons: [Season.winter, Season.spring, Season.summer, Season.autumn],
     vitaminAPercentage: 2,
     vitaminCPercentage: 8,
-    servingSize: 'One large apple',
+    servingSize: '1 large apple',
     caloriesPerServing: 130,
     trivia: const [
       Trivia(

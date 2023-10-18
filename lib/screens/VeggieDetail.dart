@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
 import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
-import 'package:veggie_seasons_v2/components/SeasonCircle.dart';
+import 'package:veggie_seasons_v2/components/TriviaComponent.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
+import 'package:veggie_seasons_v2/components/toggle.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
 
@@ -18,6 +18,8 @@ class VeggieDetail extends StatefulWidget {
 }
 
 class _VeggieDetailState extends State<VeggieDetail> {
+  bool trivia = false;
+
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   // late Future<bool> _inGarden;
   // late Future<int> _dailyCalories;
@@ -49,17 +51,23 @@ class _VeggieDetailState extends State<VeggieDetail> {
     }
   }
 
+  void toggleFactTrivia(Set<String> selectedVals) {
+    setState(() {
+      trivia = (selectedVals.first == 'Trivia');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var serving_words = widget.veggie.servingSize.split(" ");
+    var servingWords = widget.veggie.servingSize.split(" ");
 
-    var serving_info =
+    var servingInfo =
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: serving_words[0],
-            label: serving_words.sublist(1).join(" ").capitalize()),
+            number: servingWords[0],
+            label: servingWords.sublist(1).join(" ").capitalize()),
       ),
       Expanded(
         flex: 1,
@@ -69,14 +77,12 @@ class _VeggieDetailState extends State<VeggieDetail> {
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: (widget.veggie.vitaminAPercentage).toString() + "%",
-            label: "Vitamin A"),
+            number: "${widget.veggie.vitaminAPercentage}%", label: "Vitamin A"),
       ),
       Expanded(
         flex: 1,
         child: ServingInfo(
-            number: widget.veggie.vitaminCPercentage.toString() + "%",
-            label: "Vitamin C"),
+            number: "${widget.veggie.vitaminCPercentage}%", label: "Vitamin C"),
       ),
     ]);
 
@@ -90,90 +96,108 @@ class _VeggieDetailState extends State<VeggieDetail> {
         padding: EdgeInsets.symmetric(
           horizontal: $styles.padding.l,
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(widget.veggie.categoryName?.toUpperCase() ?? "",
-              style: $styles.text.subheading1
-                  .copyWith(color: $styles.colors.grey)),
-          SizedBox(height: $styles.padding.xs),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.veggie.name,
-                style:
-                    $styles.text.heading1.copyWith(color: $styles.colors.black),
-              ),
-              VeggieCardSeasons(
-                size: Size.large,
-                veggie: widget.veggie,
-              )
-            ],
-          ),
-          SizedBox(height: $styles.padding.s),
-          Text(widget.veggie.shortDescription,
-              style: $styles.text.subheading1
-                  .copyWith(color: $styles.colors.grey)),
-          SizedBox(height: $styles.padding.s),
-          VeggieImage(veggie: widget.veggie, size: Size.large),
-          SizedBox(height: $styles.padding.m),
-          Text("SERVING INFO",
-              style:
-                  $styles.text.heading3.copyWith(color: $styles.colors.black)),
-          SizedBox(height: $styles.padding.xs),
-          Container(
-            decoration: BoxDecoration(
-              color: $styles.colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: $styles.colors.black, width: 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.veggie.categoryName?.toUpperCase() ?? "",
+                style: $styles.text.subheading1
+                    .copyWith(color: $styles.colors.grey)),
+            SizedBox(height: $styles.padding.xs),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.veggie.name,
+                  style: $styles.text.heading1
+                      .copyWith(color: $styles.colors.black),
+                ),
+                VeggieCardSeasons(
+                  size: Size.large,
+                  veggie: widget.veggie,
+                )
+              ],
             ),
-            child: Padding(
-              padding: EdgeInsets.all($styles.padding.m),
-              child: Column(
-                children: [
-                  serving_info,
-                  SizedBox(height: $styles.padding.m),
-                  FutureBuilder(
-                      future: _getCalorie(),
-                      initialData: 2000,
-                      builder: (context, snapshot) {
-                        return Text(
-                          "Percent daily values based on a diet of ${snapshot.data} calories",
-                          style: $styles.text.paragraph
-                              .copyWith(color: $styles.colors.grey),
-                        );
-                      }),
-                ],
-              ),
+            SizedBox(height: $styles.padding.s),
+            Text(widget.veggie.shortDescription,
+                style: $styles.text.subheading1
+                    .copyWith(color: $styles.colors.grey)),
+            SizedBox(height: $styles.padding.s),
+            VeggieImage(veggie: widget.veggie, size: Size.large),
+            SizedBox(height: $styles.padding.m),
+            Toggle(
+              onPressed: toggleFactTrivia,
             ),
-          ),
-          SizedBox(height: $styles.padding.m),
-          Row(
-            children: [
-              FutureBuilder(
-                  future: _checkGarden(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                    if (snapshot.hasData) {
-                      print("data ${snapshot.data!}");
-                      return CustomSwitch(
-                          value: snapshot.data!,
-                          onChanged: (value) {
-                            setState(() {
-                              _setGarden(value);
-                            });
-                          });
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  }),
-              SizedBox(width: $styles.padding.xs),
-              Text(
-                "Save to garden",
-                style: $styles.text.label.copyWith(color: $styles.colors.grey),
-              )
-            ],
-          )
-        ]),
+            SizedBox(height: $styles.padding.s),
+            trivia
+                ? TriviaComponent(
+                    trivias: widget.veggie.trivia,
+                  )
+                : Column(
+                    children: [
+                      Text("SERVING INFO",
+                          style: $styles.text.heading3
+                              .copyWith(color: $styles.colors.black)),
+                      SizedBox(height: $styles.padding.xs),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: $styles.colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border:
+                              Border.all(color: $styles.colors.black, width: 2),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all($styles.padding.m),
+                          child: Column(
+                            children: [
+                              servingInfo,
+                              SizedBox(height: $styles.padding.m),
+                              FutureBuilder(
+                                  future: _getCalorie(),
+                                  initialData: 2000,
+                                  builder: (context, snapshot) {
+                                    return Text(
+                                      "Percent daily values based on a diet of ${snapshot.data} calories",
+                                      style: $styles.text.paragraph
+                                          .copyWith(color: $styles.colors.grey),
+                                    );
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: $styles.padding.m),
+                      Row(
+                        children: [
+                          FutureBuilder(
+                              future: _checkGarden(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<bool> snapshot) {
+                                if (snapshot.hasData) {
+                                  print("data ${snapshot.data!}");
+                                  return CustomSwitch(
+                                      value: snapshot.data!,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _setGarden(value);
+                                        });
+                                      });
+                                } else {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+                              }),
+                          SizedBox(width: $styles.padding.xs),
+                          Text(
+                            "Save to garden",
+                            style: $styles.text.label
+                                .copyWith(color: $styles.colors.grey),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+          ],
+        ),
       ),
     );
   }
@@ -207,6 +231,6 @@ class ServingInfo extends StatelessWidget {
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }

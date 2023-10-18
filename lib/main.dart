@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
-import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
-import 'package:veggie_seasons_v2/data/veggie_data.dart';
 import 'package:veggie_seasons_v2/screens/Garden.dart';
 import 'package:veggie_seasons_v2/screens/Home.dart';
 import 'package:veggie_seasons_v2/screens/SearchPage.dart';
+import 'package:veggie_seasons_v2/screens/Settings.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/Button.dart';
 import 'package:veggie_seasons_v2/components/CustomNavigationBar.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCard.dart';
 
 void main() async {
-  runApp(VeggieSeasonsApp());
+  runApp(const VeggieSeasonsApp());
 }
 
 /// Creates an app using [MaterialApp]
 class VeggieSeasonsApp extends StatelessWidget {
+  const VeggieSeasonsApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +23,8 @@ class VeggieSeasonsApp extends StatelessWidget {
         fontFamily: $styles.text.fontFamily,
         colorScheme: $styles.colors.toColorScheme(),
       ),
-      home: DefaultTabController(length: 4, child: Page()),
+      debugShowCheckedModeBanner: false,
+      home: const DefaultTabController(length: 4, child: Page()),
     );
   }
 }
@@ -77,11 +75,11 @@ class _PageState extends State<Page> with TickerProviderStateMixin {
       ),
       body: IndexedStack(
         index: tabIndex,
-        children: [
+        children: const [
           Home(),
           Garden(),
           SearchPage(),
-          Center(child: Text("placeholder")),
+          SettingsScreen(),
         ],
       ),
     );

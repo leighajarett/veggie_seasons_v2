@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:veggie_seasons_v2/components/cards/CardHeader.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
 import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
 import 'package:veggie_seasons_v2/data/veggie.dart';
 import 'package:veggie_seasons_v2/screens/VeggieDetail.dart';
 import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/SeasonCircle.dart';
 
 class SmallVeggieCard extends StatelessWidget {
-  SmallVeggieCard({super.key, required this.veggie});
-  Veggie veggie;
+  const SmallVeggieCard({super.key, required this.veggie});
+  final Veggie veggie;
   final size = Size.small;
 
   @override
@@ -37,9 +36,7 @@ class SmallVeggieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CardHeader(veggie: veggie, size: size),
-                    SizedBox(
-                      height: $styles.padding.xs,
-                    ),
+                    Gap($styles.padding.s),
                     Text(
                       veggie.shortDescription,
                       style: $styles.text.subheading2,
