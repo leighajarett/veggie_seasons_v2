@@ -29,13 +29,7 @@ class Circle extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: $styles.colors.black,
-            width: 2,
-          )),
+      decoration: $styles.containerStyles.circular.copyWith(color: color),
       child: text != null
           ? Center(
               child: Text(text!,
