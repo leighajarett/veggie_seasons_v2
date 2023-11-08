@@ -20,7 +20,7 @@ class VeggieSeasonsApp extends StatelessWidget {
       title: 'Veggie Seasons',
       theme: ThemeData(
         scaffoldBackgroundColor: $styles.colors.background,
-        fontFamily: $styles.text.fontFamily,
+        // fontFamily: $styles.text.fontFamily,
         colorScheme: $styles.colors.toColorScheme(),
       ),
       debugShowCheckedModeBanner: false,

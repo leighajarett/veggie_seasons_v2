@@ -15,9 +15,9 @@ class VeggieCardSeasons extends StatelessWidget {
       children: [
         for (Season season in veggie.seasons)
           Padding(
-            padding: size == Size.large
-                ? EdgeInsets.only(left: $styles.padding.s)
-                : EdgeInsets.only(left: $styles.padding.xs),
+            padding: EdgeInsets.only(
+              left: size == Size.large ? $styles.padding.s : $styles.padding.xs,
+            ),
             child: SeasonCircle(
               size: size,
               season: season,

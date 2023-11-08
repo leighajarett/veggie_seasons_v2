@@ -15,8 +15,8 @@ class AppStyle {
 
 @immutable
 class _Text {
-  final TextStyle font = GoogleFonts.lexend();
-  final String? fontFamily = GoogleFonts.lexend().fontFamily;
+  final TextStyle font = const TextStyle();
+  // final String? fontFamily = GoogleFonts.lexend().fontFamily;
 
   late final TextStyle heading1;
   late final TextStyle heading2;
@@ -73,14 +73,15 @@ class _ContainerStyles {
     ),
   );
 
-  final BoxDecoration rounded = BoxDecoration(
-    borderRadius: $styles.borderStyle.roundedBorderRadius,
-    color: $styles.colors.white,
-    border: Border.all(
-      color: $styles.borderStyle.stroke,
-      width: $styles.borderStyle.width,
-    ),
-  );
+  BoxDecoration rounded({DecorationImage? image}) => BoxDecoration(
+        borderRadius: $styles.borderStyle.roundedBorderRadius,
+        color: $styles.colors.white,
+        image: image,
+        border: Border.all(
+          color: $styles.borderStyle.stroke,
+          width: $styles.borderStyle.width,
+        ),
+      );
 }
 
 class _BorderStyle {

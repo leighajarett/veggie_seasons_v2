@@ -20,13 +20,14 @@ class VeggieImage extends StatelessWidget {
     };
 
     return Container(
-        width: width,
-        height: height,
-        decoration: $styles.containerStyles.rounded,
-        child: ClipRRect(
-          borderRadius: $styles.borderStyle.roundedBorderRadius,
-          child: Image(
-              fit: BoxFit.cover, image: AssetImage(veggie.imageAssetPath)),
-        ));
+      width: width,
+      height: height,
+      decoration: $styles.containerStyles.rounded(
+        image: DecorationImage(
+          image: AssetImage(veggie.imageAssetPath),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
   }
 }

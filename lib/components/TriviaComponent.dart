@@ -41,13 +41,7 @@ class _TriviaComponentState extends State<TriviaComponent> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('🎉 Good Job!'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('You got the correct answer.'),
-              ],
-            ),
-          ),
+          content: const Text('You got the correct answer.'),
           actions: <Widget>[
             TextButton(
               child: const Text('Next question'),
@@ -66,21 +60,19 @@ class _TriviaComponentState extends State<TriviaComponent> {
   Widget build(BuildContext context) {
     List<Widget> triviaWidgets = [];
 
-    Widget question = Text(trivia.question, style: $styles.text.subheading1);
-
+    Widget question = Padding(
+      padding: EdgeInsets.all($styles.padding.m),
+      child: Text(trivia.question, style: $styles.text.subheading1),
+    );
     triviaWidgets.add(question);
 
-    triviaWidgets.add(SizedBox(height: $styles.padding.m));
-
-    for (int answerIndex = 0;
-        answerIndex < trivia.answers.length;
-        answerIndex++) {
+    for (int answerIndex = 0; answerIndex < trivia.answers.length; answerIndex++) {
       triviaWidgets.add(
         Button(
           textString: trivia.answers[answerIndex],
           onPressed: () {
             if (triviaAnswerIsCorrect(answerIndex)) {
-              print('answer is correct!');
+              debugPrint('answer is correct!');
               _showCorrectAnswerBanner();
             }
           },
@@ -89,9 +81,11 @@ class _TriviaComponentState extends State<TriviaComponent> {
       triviaWidgets.add(SizedBox(height: $styles.padding.xs));
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: triviaWidgets,
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: triviaWidgets,
+      ),
     );
   }
 }

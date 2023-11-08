@@ -23,7 +23,7 @@ class SmallVeggieCard extends StatelessWidget {
         );
       },
       child: Container(
-        decoration: $styles.containerStyles.rounded,
+        decoration: $styles.containerStyles.rounded(),
         child: Padding(
           padding: EdgeInsets.all($styles.padding.m),
           child: Row(

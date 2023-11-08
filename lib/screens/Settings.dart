@@ -9,14 +9,17 @@ class SettingsScreen extends StatelessWidget {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          child: Text(
-            'Settings',
-            style: $styles.text.heading1,
+          padding: EdgeInsets.symmetric(
+            horizontal: $styles.padding.l,
+            vertical: $styles.padding.xs,
           ),
+          child: Text('Settings', style: $styles.text.heading1),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          padding: EdgeInsets.symmetric(
+            vertical: $styles.padding.xs,
+            horizontal: $styles.padding.m,
+          ),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
@@ -31,22 +34,14 @@ class SettingsScreen extends StatelessWidget {
                 ListTile(
                   contentPadding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
                   leading: const Icon(Icons.directions_run),
-                  title: Text(
-                    'Calorie Target',
-                    style: $styles.text.heading3,
-                  ),
+                  title: Text('Calorie Target', style: $styles.text.heading3),
                   onTap: () => debugPrint('[Tapped] Calorie Target!'),
                 ),
-                const Divider(
-                  thickness: 2,
-                ),
+                const Divider(thickness: 2),
                 ListTile(
                   contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
                   leading: const Icon(Icons.favorite_border),
-                  title: Text(
-                    'Preferred Categories',
-                    style: $styles.text.heading3,
-                  ),
+                  title: Text('Preferred Categories', style: $styles.text.heading3),
                   onTap: () => debugPrint('[Tapped] Preferred Categories!'),
                 ),
               ],

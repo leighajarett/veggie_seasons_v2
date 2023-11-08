@@ -43,43 +43,38 @@ class _HomeState extends State<Home> {
     Season getSeason() {
       switch (month) {
         case 12 || 1 || 2:
-          {
-            return Season.winter;
-          }
+         return Season.winter;
         case 3 || 4 || 5:
-          {
-            return Season.spring;
-          }
+          return Season.spring;
         case 6 || 7 || 8:
-          {
-            return Season.summer;
-          }
+          return Season.summer;
         default:
-          {
-            return Season.autumn;
-          }
+          return Season.autumn;
       }
     }
 
     return Scaffold(
-      body: CustomScrollView(slivers: [
-        SliverPersistentHeader(
-          delegate: CustomSliverHeaderDelegate(monthYear: getMonthYear()),
-          pinned: true,
-          floating: false,
-        ),
-        SliverList.list(
-          children: [
-            for (Veggie veggie
-                in veggies.where((v) => v.seasons.contains(getSeason())))
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: $styles.padding.m, horizontal: $styles.padding.l),
-                child: VeggieCard(veggie: veggie),
-              )
-          ],
-        ),
-      ]),
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            delegate: CustomSliverHeaderDelegate(monthYear: getMonthYear()),
+            pinned: true,
+            floating: false,
+          ),
+          SliverList.list(
+            children: [
+              for (Veggie veggie in veggies.where((v) => v.seasons.contains(getSeason())))
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: $styles.padding.m,
+                    horizontal: $styles.padding.l,
+                  ),
+                  child: VeggieCard(veggie: veggie),
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

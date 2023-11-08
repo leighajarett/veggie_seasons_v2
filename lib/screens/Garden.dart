@@ -39,33 +39,27 @@ class _GardenState extends State<Garden> {
             return SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.only(top: $styles.padding.s),
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
+                child: const Center(child: CircularProgressIndicator()),
               ),
             );
           } else if (snapshot.hasData) {
             return SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: $styles.padding.l),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.only(top: $styles.padding.s),
-                      child: SmallVeggieCard(veggie: snapshot.data![index]),
-                    );
-                  },
-                  childCount: snapshot.data!.length,
-                ),
+              sliver: SliverList.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: $styles.padding.s),
+                    child: SmallVeggieCard(veggie: snapshot.data![index]),
+                  );
+                },
+                itemCount: snapshot.data!.length,
               ),
             );
           } else {
             return SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.only(top: $styles.padding.s),
-                child: const Center(
-                  child: Text("No veggies found."),
-                ),
+                child: const Center(child: Text("No veggies found.")),
               ),
             );
           }

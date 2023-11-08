@@ -13,7 +13,7 @@ class CardHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Flexible(
+        Expanded(
           flex: 5,
           child: Text(
             veggie.name,
