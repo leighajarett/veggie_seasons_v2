@@ -23,24 +23,20 @@ class VeggieCard extends StatelessWidget {
       },
       child: Container(
         decoration: $styles.containerStyles.rounded(),
-        child: Padding(
-          padding: EdgeInsets.all($styles.padding.m),
-          child: Column(
-            children: [
-              VeggieImage(veggie: veggie, size: size),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: $styles.padding.s, bottom: $styles.padding.s),
-                    child: CardHeader(veggie: veggie, size: size),
-                  ),
-                  Text(veggie.shortDescription, style: $styles.text.subheading2)
-                ],
-              )
-            ],
-          ),
+        padding: EdgeInsets.all($styles.padding.m),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            VeggieImage(veggie: veggie, size: size),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: $styles.padding.s),
+              child: CardHeader(veggie: veggie, size: size),
+            ),
+            Text(
+              veggie.shortDescription,
+              style: $styles.text.subheading2,
+            )
+          ], 
         ),
       ),
     );

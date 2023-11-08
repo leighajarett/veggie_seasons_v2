@@ -31,10 +31,10 @@ class Button extends StatelessWidget {
     );
 
     final padding = EdgeInsets.symmetric(
-        horizontal: $styles.padding.m, vertical: $styles.padding.s);
+      horizontal: $styles.padding.m, vertical: $styles.padding.s);
 
     final border = BorderSide(
-        color: $styles.colors.black, width: $styles.borderStyle.width);
+      color: $styles.borderStyle.stroke, width: $styles.borderStyle.width);
 
     return TextButton(
         onPressed: onPressed,

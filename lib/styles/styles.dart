@@ -8,6 +8,7 @@ class AppStyle {
   late final _Text text = _Text();
   late final AppColors colors = AppColors();
   late final _Padding padding = _Padding();
+  late final _Spacers spacers = _Spacers()..padding = padding;
   late final _SeasonSizes seasonSizes = _SeasonSizes();
   late final _ContainerStyles containerStyles = _ContainerStyles();
   late final _BorderStyle borderStyle = _BorderStyle();
@@ -59,34 +60,41 @@ class _Padding {
   final xs = 6.0;
 }
 
+class _Spacers {
+  late final _Padding padding;
+
+  get xl => SizedBox.square(dimension: padding.xl);
+  get l => SizedBox.square(dimension: padding.l);
+  get m => SizedBox.square(dimension: padding.m);
+  get s => SizedBox.square(dimension: padding.s);
+  get xs => SizedBox.square(dimension: padding.xs);
+}
+
 class _SeasonSizes {
   final small = 20.0;
   final large = 25.0;
 }
 
 class _ContainerStyles {
+  // Why are these defined here, but others defined ad hoc in app?
+
   final BoxDecoration circular = BoxDecoration(
     shape: BoxShape.circle,
-    border: Border.all(
-      color: $styles.borderStyle.stroke,
-      width: $styles.borderStyle.width,
-    ),
+    border: $styles.borderStyle.border,
   );
 
   BoxDecoration rounded({DecorationImage? image}) => BoxDecoration(
         borderRadius: $styles.borderStyle.roundedBorderRadius,
         color: $styles.colors.white,
         image: image,
-        border: Border.all(
-          color: $styles.borderStyle.stroke,
-          width: $styles.borderStyle.width,
-        ),
+        border: $styles.borderStyle.border,
       );
 }
 
 class _BorderStyle {
   final Color stroke = $styles.colors.black;
   final double width = 2;
+  late final Border border = Border.all(color: stroke, width: width);
   final BorderRadius roundedBorderRadius = BorderRadius.circular(20);
   final BorderRadius circularBorderRadius = BorderRadius.circular(100);
   final BorderRadius trackBorderRadius = BorderRadius.circular(50);

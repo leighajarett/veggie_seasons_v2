@@ -18,11 +18,11 @@ class NumberedCircle extends StatelessWidget {
 }
 
 class Circle extends StatelessWidget {
-  const Circle({required this.size, required this.color, this.text, super.key});
+  const Circle({required this.size, required this.color, this.text = '', super.key});
 
   final double size;
   final Color color;
-  final String? text;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +30,12 @@ class Circle extends StatelessWidget {
       width: size,
       height: size,
       decoration: $styles.containerStyles.circular.copyWith(color: color),
-      child: text != null
-          ? Center(
-              child: Text(text!,
-                  style: text!.length > 2
-                      ? $styles.text.heading3
-                      : $styles.text.heading2),
-            )
-          : null,
+      child: Center(
+        child: Text(
+          text,
+          style: text.length > 2 ? $styles.text.heading3 : $styles.text.heading2,
+        ),
+      ),
     );
   }
 }

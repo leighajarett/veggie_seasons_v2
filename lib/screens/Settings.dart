@@ -22,24 +22,29 @@ class SettingsScreen extends StatelessWidget {
           ),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(
-                color: $styles.colors.black,
-                width: 2,
-              ),
+              border: $styles.borderStyle.border,
               borderRadius: BorderRadius.circular(25),
               color: $styles.colors.white,
             ),
             child: Column(
               children: [
                 ListTile(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                  contentPadding: EdgeInsets.only(
+                    left: $styles.padding.m,
+                    top: $styles.padding.xs,
+                    right: $styles.padding.m,
+                  ),
                   leading: const Icon(Icons.directions_run),
                   title: Text('Calorie Target', style: $styles.text.heading3),
                   onTap: () => debugPrint('[Tapped] Calorie Target!'),
                 ),
                 const Divider(thickness: 2),
                 ListTile(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+                  contentPadding: EdgeInsets.only(
+                    left: $styles.padding.m,
+                    right: $styles.padding.m,
+                    bottom: $styles.padding.xs,
+                  ),
                   leading: const Icon(Icons.favorite_border),
                   title: Text('Preferred Categories', style: $styles.text.heading3),
                   onTap: () => debugPrint('[Tapped] Preferred Categories!'),

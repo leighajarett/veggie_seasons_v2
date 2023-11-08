@@ -54,14 +54,14 @@ class _CustomSwitchState extends State<CustomSwitch>
 
   @override
   Widget build(BuildContext context) {
-    print("switch value ${widget.value}");
+    debugPrint("switch value ${widget.value}");
 
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
         return GestureDetector(
             onTap: () {
-              print("tap");
+              debugPrint("tap");
               handleAnimation();
               widget.onChanged(!widget.value);
             },
@@ -84,11 +84,12 @@ class _CustomSwitchState extends State<CustomSwitch>
               alignment: _circleAnimation.value,
               children: [
                 Track(
-                    trackWidth: trackWidth,
-                    trackHeight: trackHeight,
-                    widget: widget,
-                    activeColor: activeColor,
-                    inactiveColor: inactiveColor),
+                  trackWidth: trackWidth,
+                  trackHeight: trackHeight,
+                  widget: widget,
+                  activeColor: activeColor,
+                  inactiveColor: inactiveColor,
+                ),
                 Thumb(
                   thumbColor: thumbColor,
                   thumbHeight: thumbHeight,
@@ -119,14 +120,14 @@ class Track extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: trackWidth,
-        height: trackHeight,
-        decoration: BoxDecoration(
-            borderRadius: $styles.borderStyle.trackBorderRadius,
-            color: widget.value ? activeColor : inactiveColor,
-            border: Border.all(
-                color: $styles.borderStyle.stroke,
-                width: $styles.borderStyle.width)));
+      width: trackWidth,
+      height: trackHeight,
+      decoration: BoxDecoration(
+        borderRadius: $styles.borderStyle.trackBorderRadius,
+        color: widget.value ? activeColor : inactiveColor,
+        border: $styles.borderStyle.border,
+      ),
+    );
   }
 }
 
@@ -143,12 +144,13 @@ class Thumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.center,
-        width: thumbHeight,
-        height: thumbHeight,
-        decoration: $styles.containerStyles.circular.copyWith(
-          color: thumbColor,
-        ));
+      alignment: Alignment.center,
+      width: thumbHeight,
+      height: thumbHeight,
+      decoration: $styles.containerStyles.circular.copyWith(
+        color: thumbColor,
+      ),
+    );
   }
 }
 

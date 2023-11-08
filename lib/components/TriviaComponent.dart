@@ -78,7 +78,7 @@ class _TriviaComponentState extends State<TriviaComponent> {
           },
         ),
       );
-      triviaWidgets.add(SizedBox(height: $styles.padding.xs));
+      triviaWidgets.add($styles.spacers.xs);
     }
 
     return Center(
