@@ -40,35 +40,21 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       FontAwesomeIcons.solidUser,
     ];
 
-    // For whole widget, lots of numbers all over.
-    // Would be best to put them all in the $styles object so
-    // it is easier to read/use/etc.
     double containerW = 46;
     double iconContainerW = containerW / 2;
-    double iconSize = 22;
     double totalWidth = MediaQuery.of(context).size.width;
+    double freeSpace = (totalWidth - (iconContainerW * icons.length)) / (icons.length + 1);
+    double xOffset = ((freeSpace + iconContainerW) * selectedIndex) + freeSpace - 10;
 
     return Container(
-      height: ($styles.padding.s + iconContainerW) * 2, 
+      height: containerW + iconContainerW, 
       color: $styles.colors.white,
       child: SafeArea(
         child: Stack(
           children: [
-            AnimatedSlide(
-              offset: Offset(
-                // This is really hard to read.
-                // Storing whatever this value is in a
-                // getter or method in the style file would be best.
-                ((((totalWidth -
-                                    (2 *
-                                        ($styles.padding.xl +
-                                            iconContainerW))) /
-                                3) *
-                            selectedIndex) +
-                        $styles.padding.xl) /
-                    containerW,
-                $styles.padding.s / containerW,
-              ),
+            AnimatedPositioned(
+              left: xOffset,
+              top: $styles.padding.s,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOutCubicEmphasized,
               child: Container(
@@ -79,43 +65,29 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: $styles.padding.xl + iconContainerW / 2,
-                right: $styles.padding.xl + iconContainerW / 2,
-                top: $styles.padding.s + iconContainerW / 2,
-              ),
+            Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: icons.map((icon) {
-                  return SizedBox.square(
-                    dimension: iconContainerW,
-                    child: Center(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: icons.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = entry.key;
+                        widget.tabController.animateTo(entry.key);
+                      });
+                    },
+                    child: SizedBox.square(
+                      dimension: iconContainerW,
                       child: FaIcon(
-                        size: iconSize,
-                        icon,
+                        size: iconContainerW,
+                        entry.value,
                         color: $styles.colors.black,
                       ),
                     ),
                   );
                 }).toList(),
               ),
-            ),
-            Row(
-              children: icons.asMap().entries.map((entry) {
-                int index = entry.key;
-                return Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                        widget.tabController.animateTo(index);
-                      });
-                    },
-                  ),
-                );
-              }).toList(),
             ),
           ],
         ),
