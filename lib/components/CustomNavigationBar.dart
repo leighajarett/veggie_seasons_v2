@@ -44,7 +44,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     double iconContainerW = containerW / 2;
     double totalWidth = MediaQuery.of(context).size.width;
     double freeSpace = (totalWidth - (iconContainerW * icons.length)) / (icons.length + 1);
-    double xOffset = ((freeSpace + iconContainerW) * selectedIndex) + freeSpace - 10;
+    double xOffset = ((freeSpace + iconContainerW) * selectedIndex) + freeSpace - (iconContainerW / 2);
 
     return Container(
       height: containerW + iconContainerW, 
