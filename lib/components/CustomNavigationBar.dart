@@ -15,20 +15,6 @@ class CustomNavigationBar extends StatefulWidget {
 }
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
-  int selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedIndex = widget.tabController.index;
-    widget.tabController.addListener(_handleTabChanged);
-  }
-
-  void _handleTabChanged() {
-    setState(() {
-      selectedIndex = widget.tabController.index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +30,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     double iconContainerW = containerW / 2;
     double totalWidth = MediaQuery.of(context).size.width;
     double freeSpace = (totalWidth - (iconContainerW * icons.length)) / (icons.length + 1);
-    double xOffset = ((freeSpace + iconContainerW) * selectedIndex) + freeSpace - (iconContainerW / 2);
+    double xOffset = ((freeSpace + iconContainerW) * widget.tabController.index) + freeSpace - (iconContainerW / 2);
 
     return Container(
       height: containerW + iconContainerW, 
@@ -73,7 +59,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
                       setState(() {
-                        selectedIndex = entry.key;
                         widget.tabController.animateTo(entry.key);
                       });
                     },
