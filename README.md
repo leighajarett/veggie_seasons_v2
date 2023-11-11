@@ -12,6 +12,14 @@ For help getting started with Flutter development, view the
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+### Google Fonts
+
+If running on macOS, add the following to the relevant .entitlements files when running the app in debug and/or release mode:
+```
+<key>com.apple.security.network.client</key>
+<true/>
+```
+
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
@@ -28,3 +36,5 @@ the `lib/src/localization` directory.
 To support additional languages, please visit the tutorial on
 [Internationalizing Flutter
 apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+
+
