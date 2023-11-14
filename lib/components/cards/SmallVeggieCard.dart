@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:veggie_seasons_v2/components/cards/CardHeader.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/screens/VeggieDetail.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import 'CardHeader.dart';
+import 'VeggieImage.dart';
+import '../../data/veggie.dart';
+import '../../screens/VeggieDetail.dart';
+import '../../styles/styles.dart';
 
 class SmallVeggieCard extends StatelessWidget {
   const SmallVeggieCard({super.key, required this.veggie});

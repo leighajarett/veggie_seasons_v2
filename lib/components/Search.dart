@@ -1,6 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/styles.dart';
 
 class Search extends StatelessWidget {
   const Search({

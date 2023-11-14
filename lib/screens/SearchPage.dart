@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/components/Cards/SmallVeggieCard.dart';
-import 'package:veggie_seasons_v2/components/Search.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/data/veggie_data.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import '../components/Cards/SmallVeggieCard.dart';
+import '../components/Search.dart';
+import '../data/veggie.dart';
+import '../data/veggie_data.dart';
+import '../styles/styles.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

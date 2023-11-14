@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+import 'package:flutter/widgets.dart';
+
+import '../../data/veggie.dart';
+import '../../styles/styles.dart';
 
 class VeggieImage extends StatelessWidget {
   const VeggieImage({super.key, required this.veggie, required this.size});

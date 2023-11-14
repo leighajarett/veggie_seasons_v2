@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import '../styles/styles.dart';
 
 // Future -- it would be cool to have some "overscrolling"
 class CustomSliverHeaderDelegate extends SliverPersistentHeaderDelegate {

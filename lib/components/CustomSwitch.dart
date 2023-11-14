@@ -1,6 +1,7 @@
-import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+import '../styles/styles.dart';
 
 class CustomSwitch extends StatefulWidget {
   /// Public properties, set on constructor

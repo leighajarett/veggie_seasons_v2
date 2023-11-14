@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:veggie_seasons_v2/styles/colors.dart';
+
+import 'colors.dart';
 
 @immutable
 class AppStyle {

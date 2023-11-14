@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:veggie_seasons_v2/components/CustomSwitch.dart';
-import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
-import 'package:veggie_seasons_v2/components/TriviaComponent.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCardSeasons.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieImage.dart';
-import 'package:veggie_seasons_v2/components/toggle.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import '../components/cards/VeggieCardSeasons.dart';
+import '../components/cards/VeggieImage.dart';
+import '../components/CustomSwitch.dart';
+import '../components/NumberedCircle.dart';
+import '../components/toggle.dart';
+import '../components/TriviaComponent.dart';
+import '../data/veggie.dart';
+import '../styles/styles.dart';
 
 class VeggieDetail extends StatefulWidget {
   const VeggieDetail({super.key, required this.veggie});

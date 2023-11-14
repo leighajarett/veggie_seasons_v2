@@ -1,6 +1,7 @@
-import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../styles/styles.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({
@@ -28,12 +29,13 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
     double containerW = 46;
     double iconContainerW = containerW / 2;
-    double totalWidth = MediaQuery.of(context).size.width;
+    double totalWidth = MediaQuery.sizeOf(context).width;
+    double safeArea = MediaQuery.paddingOf(context).bottom;
     double freeSpace = (totalWidth - (iconContainerW * icons.length)) / (icons.length + 1);
     double xOffset = ((freeSpace + iconContainerW) * widget.tabController.index) + freeSpace - (iconContainerW / 2);
 
     return Container(
-      height: containerW + iconContainerW, 
+      height: containerW + iconContainerW + safeArea, 
       color: $styles.colors.white,
       child: SafeArea(
         child: Stack(

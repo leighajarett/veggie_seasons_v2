@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/components/Header.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/data/veggie_data.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/cards/VeggieCard.dart';
+
+import '../components/cards/VeggieCard.dart';
+import '../components/Header.dart';
+import '../data/veggie.dart';
+import '../data/veggie_data.dart';
+import '../styles/styles.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
