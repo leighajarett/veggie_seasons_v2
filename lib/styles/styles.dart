@@ -18,7 +18,7 @@ class AppStyle {
 @immutable
 class _Text {
   final TextStyle font = const TextStyle();
-  // final String? fontFamily = GoogleFonts.lexend().fontFamily;
+  final String? fontFamily = GoogleFonts.lexend().fontFamily;
 
   late final TextStyle heading1;
   late final TextStyle heading2;
