@@ -1,6 +1,7 @@
-import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+import '../styles/styles.dart';
 
 class NumberedCircle extends StatelessWidget {
   const NumberedCircle({Key? key, required this.number}) : super(key: key);
@@ -18,11 +19,11 @@ class NumberedCircle extends StatelessWidget {
 }
 
 class Circle extends StatelessWidget {
-  const Circle({required this.size, required this.color, this.text, super.key});
+  const Circle({required this.size, required this.color, this.text = '', super.key});
 
   final double size;
   final Color color;
-  final String? text;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +31,12 @@ class Circle extends StatelessWidget {
       width: size,
       height: size,
       decoration: $styles.containerStyles.circular.copyWith(color: color),
-      child: text != null
-          ? Center(
-              child: Text(text!,
-                  style: text!.length > 2
-                      ? $styles.text.heading3
-                      : $styles.text.heading2),
-            )
-          : null,
+      child: Center(
+        child: Text(
+          text,
+          style: text.length > 2 ? $styles.text.heading3 : $styles.text.heading2,
+        ),
+      ),
     );
   }
 }

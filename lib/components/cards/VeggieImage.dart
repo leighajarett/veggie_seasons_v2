@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+import 'package:flutter/widgets.dart';
+
+import '../../data/veggie.dart';
+import '../../styles/styles.dart';
 
 class VeggieImage extends StatelessWidget {
   const VeggieImage({super.key, required this.veggie, required this.size});
@@ -20,13 +21,14 @@ class VeggieImage extends StatelessWidget {
     };
 
     return Container(
-        width: width,
-        height: height,
-        decoration: $styles.containerStyles.rounded,
-        child: ClipRRect(
-          borderRadius: $styles.borderStyle.roundedBorderRadius,
-          child: Image(
-              fit: BoxFit.cover, image: AssetImage(veggie.imageAssetPath)),
-        ));
+      width: width,
+      height: height,
+      decoration: $styles.containerStyles.rounded(
+        image: DecorationImage(
+          image: AssetImage(veggie.imageAssetPath),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import '../styles/styles.dart';
 
 class Toggle extends StatefulWidget {
   const Toggle({required this.onPressed, super.key});
@@ -19,10 +20,7 @@ class _ToggleState extends State<Toggle> {
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 0,
-            ),
+            padding: EdgeInsets.symmetric(vertical: $styles.padding.s),
             child: SegmentedButton<String>(
               showSelectedIcon: false,
               style: ButtonStyle(
@@ -36,25 +34,19 @@ class _ToggleState extends State<Toggle> {
                 }),
                 side: MaterialStateProperty.all(
                   BorderSide(
-                    color: $styles.colors.black,
-                    width: 2,
+                    color: $styles.borderStyle.stroke,
+                    width: $styles.borderStyle.width,
                   ),
                 ),
               ),
               segments: <ButtonSegment<String>>[
                 ButtonSegment<String>(
                   value: 'Facts & Info',
-                  label: Text(
-                    'Facts & Info',
-                    style: $styles.text.heading3,
-                  ),
+                  label: Text('Facts & Info', style: $styles.text.heading3),
                 ),
                 ButtonSegment<String>(
                   value: 'Trivia',
-                  label: Text(
-                    'Trivia',
-                    style: $styles.text.heading3,
-                  ),
+                  label: Text('Trivia', style: $styles.text.heading3),
                 )
               ],
               selected: <String>{selected},

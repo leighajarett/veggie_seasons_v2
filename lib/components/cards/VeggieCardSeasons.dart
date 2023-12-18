@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/components/SeasonCircle.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+import 'package:flutter/widgets.dart';
+
+import '../SeasonCircle.dart';
+import '../../data/veggie.dart';
+import '../../styles/styles.dart';
 
 class VeggieCardSeasons extends StatelessWidget {
   const VeggieCardSeasons(
@@ -15,9 +16,9 @@ class VeggieCardSeasons extends StatelessWidget {
       children: [
         for (Season season in veggie.seasons)
           Padding(
-            padding: size == Size.large
-                ? EdgeInsets.only(left: $styles.padding.s)
-                : EdgeInsets.only(left: $styles.padding.xs),
+            padding: EdgeInsets.only(
+              left: size == Size.large ? $styles.padding.s : $styles.padding.xs,
+            ),
             child: SeasonCircle(
               size: size,
               season: season,

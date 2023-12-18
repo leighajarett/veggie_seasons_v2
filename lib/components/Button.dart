@@ -1,6 +1,7 @@
-import 'package:veggie_seasons_v2/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+import '../styles/styles.dart';
 
 class Button extends StatelessWidget {
   const Button({super.key, required this.textString, required this.onPressed});
@@ -31,10 +32,10 @@ class Button extends StatelessWidget {
     );
 
     final padding = EdgeInsets.symmetric(
-        horizontal: $styles.padding.m, vertical: $styles.padding.s);
+      horizontal: $styles.padding.m, vertical: $styles.padding.s);
 
     final border = BorderSide(
-        color: $styles.colors.black, width: $styles.borderStyle.width);
+      color: $styles.borderStyle.stroke, width: $styles.borderStyle.width);
 
     return TextButton(
         onPressed: onPressed,

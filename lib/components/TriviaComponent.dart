@@ -1,9 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/components/Button.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
+
+import 'Button.dart';
+import '../data/veggie.dart';
+import '../styles/styles.dart';
 
 class TriviaComponent extends StatefulWidget {
   const TriviaComponent({required this.trivias, super.key});
@@ -41,13 +42,7 @@ class _TriviaComponentState extends State<TriviaComponent> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('🎉 Good Job!'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('You got the correct answer.'),
-              ],
-            ),
-          ),
+          content: const Text('You got the correct answer.'),
           actions: <Widget>[
             TextButton(
               child: const Text('Next question'),
@@ -66,32 +61,32 @@ class _TriviaComponentState extends State<TriviaComponent> {
   Widget build(BuildContext context) {
     List<Widget> triviaWidgets = [];
 
-    Widget question = Text(trivia.question, style: $styles.text.subheading1);
-
+    Widget question = Padding(
+      padding: EdgeInsets.all($styles.padding.m),
+      child: Text(trivia.question, style: $styles.text.subheading1),
+    );
     triviaWidgets.add(question);
 
-    triviaWidgets.add(SizedBox(height: $styles.padding.m));
-
-    for (int answerIndex = 0;
-        answerIndex < trivia.answers.length;
-        answerIndex++) {
+    for (int answerIndex = 0; answerIndex < trivia.answers.length; answerIndex++) {
       triviaWidgets.add(
         Button(
           textString: trivia.answers[answerIndex],
           onPressed: () {
             if (triviaAnswerIsCorrect(answerIndex)) {
-              print('answer is correct!');
+              debugPrint('answer is correct!');
               _showCorrectAnswerBanner();
             }
           },
         ),
       );
-      triviaWidgets.add(SizedBox(height: $styles.padding.xs));
+      triviaWidgets.add($styles.spacers.xs);
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: triviaWidgets,
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: triviaWidgets,
+      ),
     );
   }
 }

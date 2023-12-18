@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:veggie_seasons_v2/screens/Garden.dart';
-import 'package:veggie_seasons_v2/screens/Home.dart';
-import 'package:veggie_seasons_v2/screens/SearchPage.dart';
-import 'package:veggie_seasons_v2/screens/Settings.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:veggie_seasons_v2/components/CustomNavigationBar.dart';
+
+import 'components/CustomNavigationBar.dart';
+import 'screens/Garden.dart';
+import 'screens/Home.dart';
+import 'screens/SearchPage.dart';
+import 'screens/Settings.dart';
+import 'styles/styles.dart';
 
 void main() async {
   runApp(const VeggieSeasonsApp());

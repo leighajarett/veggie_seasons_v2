@@ -1,7 +1,8 @@
-import 'package:veggie_seasons_v2/components/NumberedCircle.dart';
-import 'package:veggie_seasons_v2/data/veggie.dart';
-import 'package:veggie_seasons_v2/styles/styles.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'NumberedCircle.dart';
+import '../data/veggie.dart';
+import '../styles/styles.dart';
 
 class SeasonCircle extends StatelessWidget {
   SeasonCircle({super.key, required this.size, required this.season});
